@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Тяжело в учении, сложно при внедрении, быстро в использовании</title>
+    <title>Your network connection is slow. Выявляем проблемы с сетью у пользователя</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
 
       .slide {
         padding-top: 51px;
-        background-image: url("pictures/fc24-cover.png");
+        background-image: url("pictures/page.svg");
         background-repeat: no-repeat;
         background-size: 100%;
         background-position: center;
@@ -43,7 +43,7 @@
 
       .slide::after {
         top: 4px;
-        right: 15px;
+        right: 16px;
         left: auto;
         background: none;
         color: #000;
@@ -71,30 +71,35 @@
   </head>
   <body class="shower list">
     <header class="caption">
-      <h1>Тяжело в учении, сложно при внедрении, быстро в использовании</h1>
+      <h1>Your network connection is slow. Выявляем проблемы с сетью у пользователя</h1>
       <p>Павел Дадыкин, ROGII</p>
     </header>
 
     <section class="slide clear" id="cover">
       <div>
-        <h2>Тяжело в учении,<br />сложно при внедрении,<br />быстро в использовании</h2>
+        <h2>Your network connection is slow.<br /> Выявляем проблемы с сетью у пользователя</h2>
         <p><b>Павел Дадыкин</b><br>ROGII</p>
       </div>
       <style>
         #cover {
-          background: url("pictures/title.svg") no-repeat center center;
+          background: url("pictures/face.svg") no-repeat center center;
           background-size: contain;
+          color: #fff;
         }
+
         #cover div {
           width: 600px;
           padding-top: 0px;
           margin-left: -40px;
         }
+
         #cover h2 {
           margin: 0;
-          font-size: 64px;
+          font-size: 48px;
           font-weight: 700;
+          color: #fff;
         }
+
         #cover p {
           margin: 64px 0 0;
           font-size: 34px;
@@ -117,9 +122,9 @@
       <h2>Обо мне</h2>
       <h3>Павел Дадыкин</h3>
       <ul>
-        <li>9 лет во фронтенде​</li>
-        <li>2 года тимлид на проекте StarLite Web</li>
-        <li>Первый раз на FrontendConf</li>
+        <li>Живу в Ульяновске</li>
+        <li>10 лет во фронтенде​</li>
+        <li>3 года тимлид на проекте StarLite Web</li>
       </ul>
       <img id="me" src="pictures/me.jpg" alt="" />
       <style>
@@ -130,15 +135,6 @@
           width: 300px;
         }
       </style>
-    </section>
-
-    <section class="slide">
-      <h2>О чём доклад</h2>
-      <ul>
-        <li>История внедрения WebAssembly на реальном проекте​</li>
-        <li>Подводные камни и решение проблем​</li>
-        <li>Стоит ли вам использовать WebAssembly в своих проектах?​</li>
-      </ul>
     </section>
 
     <section class="slide">
@@ -156,19 +152,6 @@
           top: 64px;
           left: 64px;
           width: 200px;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Что за расчёты?</h2>
-      <img class="next" id="demo-well" src="pictures/demo-well.png" alt="" />
-      <style>
-        #demo-well {
-          position: absolute;
-          top: 60px;
-          left: 32px;
-          width: 90%;
         }
       </style>
     </section>
@@ -194,73 +177,73 @@
     </section>
 
     <section class="slide">
-      <h2>Эволюция продуктов ROGII</h2>
-      <ol>
-        <li class="next">Расчёты написаны для Desktop App (на C++)​​</li>
-        <li class="next">Хранение данных в Cloud​</li>
-        <li class="next">Повторение расчётов в Web, iOS, Android</li>
-      </ol>
-    </section>
-
-    <section class="slide">
-      <h2>Проблемы</h2>
+      <h2>О чём доклад</h2>
       <ul>
-        <li class="next">Дублирование расчётов на разных платформах​​</li>
-        <li class="next">Низкая производительность при вычислениях​​</li>
-        <li class="next">Сложности добавления/изменения расчётов</li>
+        <li>Зачем пользователям знать о проблемах с соединением​</li>
+        <li>Как наш сервис должен реагировать​</li>
+        <li>Какие браузерные API работают, а какие нет​</li>
       </ul>
     </section>
 
     <section class="slide">
-      <h2>Цель</h2>
-      <ul>
-        <li>Внедрить в приложение расчёты, написанные на С++</li>
-        <li>Сохранить при этом текущий стек технологий:
-          <ul>
-            <li>React</li>
-            <li><b>Typescript</b></li>
-            <li><b>Webpack</b></li>
-            <li><b>Web workers​</b></li>
-            <li>Canvas</li>
-            <li>WebGL</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>WebAssembly (WASM)​</h2>
-      <ul>
-        <li>Формат байт-кода, исполняемого современными браузерами​</li>
-        <li>Может взаимодействовать с JavaScript</li>
-      </ul>
-      <img id="wasm-logo" src="pictures/WebAssembly_Logo.svg" alt="" />
+      <img id="no-connection" src="pictures/slow-or-no-connection.gif" alt="" />
       <style>
-        #wasm-logo {
-          position: absolute;
-          bottom: 100px;
-          left: 64px;
-          width: 150px;
+        #no-connection {
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
         }
       </style>
     </section>
 
     <section class="slide">
-      <h2>Плюсы WASM</h2>
+      <h2>Зачем пользователям знать о проблемах с их соединением</h2>
+      <ol>
+        <li class="next">Пользователь не всегда понимает, что происходит​​</li>
+        <li class="next">Он может ждать live-данные, а они не придут</li>
+        <li class="next">Визуальное уведомление повышает доверие к продукту</li>
+      </ol>
+    </section>
+
+    <section class="slide">
+      <h2>Типы проблем</h2>
       <ul>
-        <li class="next">Обеспечивает высокую скорость исполнения​​</li>
-        <li class="next">Поддержка всеми браузерами​​</li>
-        <li class="next">Компиляция в WASM доступна для множества языков <br/> (C, <b>C++</b>, C#, Rust, Elixir, Erlang, Go, TypeScript, D, Kotlin)​</li>
+        <li class="next"><strong>Полное отключение</strong> от интернета​​</li>
+        <li class="next">Временные <strong>скачки скорости​​</strong></li>
+        <li class="next">Постоянно <strong>низкая пропускная способность</strong></li>
       </ul>
     </section>
 
     <section class="slide">
-      <h2>Минусы WASM</h2>
+      <h2>Варианты реагирования</h2>
       <ul>
-        <li class="next">Чёрный ящик​</li>
-        <li class="next">Внешняя типизация​​</li>
-        <li class="next">Конвертация данных JS → WASM → JS​</li>
+        <li class="next">Показываем уведомление​</li>
+        <li class="next">Блокируем интерактивные действия, которые могут привести к ошибке</li>
+        <li class="next">Подгружаем облегчённую версию контента</li>
+        <li class="next">Начинаем повторную отправку запросов</li>
       </ul>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Браузер должен уметь всё это определять</h2>
+      <img class="next" id="obviously" src="pictures/obviously.jpg" alt="" />
+      <style>
+        #obviously {
+          width: 600px;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+          z-index: 100;
+          position: absolute;
+        }
+      </style>
     </section>
 
     <section class="slide">
@@ -835,7 +818,7 @@
         <br />
       </p>
       <p>
-        https://meloman4eg.github.io/wasm-fc-2024/<br>
+        https://meloman4eg.github.io/network-issues-fc-2025/<br>
       </p>
 
       <p>
@@ -844,16 +827,21 @@
       <img src="pictures/qr-code.gif" alt="" />
       <style>
         #last-slide {
-          background: url("pictures/title.svg") no-repeat center center;
+          background: url("pictures/end.svg") no-repeat center center;
           background-size: contain;
+          color: #fff;
         }
+
         #last-slide h2 {
           font-size: 62px;
           width: 593px;
+          color: #fff;
         }
+
         #last-slide p {
           line-height: initial;
         }
+
         #last-slide img {
           position: absolute;
           right: 40px;
