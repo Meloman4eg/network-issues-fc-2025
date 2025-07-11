@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="/pictures/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- prettier-ignore -->
     <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
@@ -66,6 +67,10 @@
         text-align: center;
         line-height: 1;
         transform: translateY(-50%);
+      }
+
+      table tr td,th:last-of-type {
+        padding-left: 30px;
       }
     </style>
   </head>
@@ -219,16 +224,6 @@
     </section>
 
     <section class="slide">
-      <h2>Варианты реагирования</h2>
-      <ul>
-        <li class="next">Показываем уведомление​</li>
-        <li class="next">Блокируем интерактивные действия, которые могут привести к ошибке</li>
-        <li class="next">Подгружаем облегчённую версию контента</li>
-        <li class="next">Начинаем повторную отправку запросов</li>
-      </ul>
-    </section>
-
-    <section class="slide">
       <h2 class="title">Браузер должен уметь всё это определять</h2>
       <img class="next" id="obviously" src="pictures/obviously.jpg" alt="" />
       <style>
@@ -247,46 +242,168 @@
     </section>
 
     <section class="slide">
-      <h2>Доклады про WASM</h2>
+      <h2>Online/Offline</h2>
+      <div class="next">
+        window.navigator.onLine
+        <img id="baseline-navigator" src="pictures/baseline-navigator.png" alt="" />
+      </div>
+      <pre class="next">
+        <code>if&nbsp;(<mark>navigator.onLine</mark>)&nbsp;{</code>
+        <code>&nbsp;&nbsp;console.log("online");</code>
+        <code>} else {</code>
+        <code>&nbsp;&nbsp;console.log("offline");</code>
+        <code>}</code>
+      </pre>
+      <style>
+        #baseline-navigator {
+          width: 382px;
+          display: block;
+          margin-bottom: 20px;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Online/Offline</h2>
+      <pre>
+        <code>window.addEventListener('<mark>online</mark>', () => {/* сеть есть */});</code>
+        <code>window.addEventListener('<mark>offline</mark>', () => {/* сети нет */});</code>
+      </pre>
+    </section>
+
+    <section class="slide">
+      <h2>navigator.onLine</h2>
+      <li class="next">Показывает только есть ли <b>подключение к сети</b>​</li>
+      <li class="next"><b>Не делает</b> пинг, запрос или проверку доступности</li>
+      <li class="next">Нет информации о скорости или стабильности</li>
+    </section>
+
+    <section class="slide">
+      <h2>navigator.onLine === true</h2>
+      <li>😀 С соединением всё в порядке</b>​</li>
+      <li class="next">🙁 DNS не работает​</li>
+      <li class="next">🙁 Wi-Fi есть, но интернет «упал»</li>
+      <li class="next">🙁 Wi-Fi требует авторизации</li>
+      <li class="next">🙁 Проблемы с VPN</li>
+    </section>
+
+    <section class="slide">
+      <h2>Что же показывает navigator.onLine?</h2>
+      <li class="next">false → Проблемы с сетью точно есть 🙁</b>​</li>
+      <li class="next">true → <b>Возможно</b>, с сетью всё в порядке 🤨​</li>
+      <div>&nbsp</div>
+      <div class="next"><b>Не стоит</b> полагаться на него как на единственный источник истины!</div>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Как же определить скорость соединения?</h2>
+    </section>
+
+    <section class="slide">
+      <h2>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation">
+          Network Information API
+        </a>
+      </h2>
+      Браузерное API для получения информации о типе подключения и скорости
+      <div class="next">
+        <code>window.navigator.connection</code>
+      </div>
+    </section>
+
+    <section class="slide">
+      <h2>Свойства navigator.connection</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Свойство</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>effectiveType</code></td>
+            <td>Тип соединения: 'slow-2g', '2g', '3g', '4g'</td>
+          </tr>
+          <tr>
+            <td><code>type</code></td>
+            <td>Тип сети: 'wifi', 'cellular', 'bluetooth', 'ethernet', ...</td>
+          </tr>
+          <tr>
+            <td><code>downlink</code></td>
+            <td>Оценка скорости в Mbps</td>
+          </tr>
+          <tr>
+            <td><code>downlinkMax</code></td>
+            <td>Максимально возможная скорость</td>
+          </tr>
+          <tr>
+            <td><code>rtt</code></td>
+            <td>Round-trip time (RTT) в миллисекундах</td>
+          </tr>
+          <tr>
+            <td><code>saveData</code></td>
+            <td>Включён ли режим экономии трафика</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <h2>Network Information API</h2>
+      <div class="next">
+        <img id="baseline-network" src="pictures/baseline-network.png" alt="" />
+      </div>
+      <div class="next">
+        <a href="https://googlechrome.github.io/samples/network-information/">
+          Network Information API Sample
+        </a>
+      </div>
+      <div class="next">
+        <img src="pictures/live-output.png" alt="" />
+      </div>
+      <div class="next">
+        <img id="facepalm" src="pictures/facepalm.jpg" alt="" />
+      </div>
+      <style>
+        #baseline-network {
+          width: 381px;
+        }
+        #facepalm {
+          position: absolute;
+          top: 50px;
+          bottom: 0;
+          right: 0;
+          margin: auto;
+          left: 0;
+        }
+      </style>
+    </section>
+
+
+
+    <section class="slide">
+      <h2>Варианты реагирования</h2>
       <ul>
-        <li>
-          <a href="https://frontendconf.ru/moscow/2018/abstracts/3923">
-            Разработка под WebAssembly: реальные грабли и примеры (Андрей Нагих, FC 2018)
-          </a>
-        ​</li>
-        <li>
-          <a href="https://frontendconf.ru/moscow/2019/abstracts/4782">
-            RUST + WEBASSEMBLY (Илья Барышников, FC 2019)
-          </a>
-        ​</li>
-        <li>
-          <a href="https://frontendconf.ru/moscow/2020/abstracts/5935">
-            WebAssembly SPA-фреймворки (FC 2020)
-          </a>
-        ​</li>
+        <li class="next">Показываем уведомление​</li>
+        <li class="next">Блокируем интерактивные действия, которые могут привести к ошибке</li>
+        <li class="next">Подгружаем облегчённую версию контента</li>
+        <li class="next">Начинаем повторную отправку запросов</li>
       </ul>
     </section>
 
     <section class="slide">
-      <h2>Тяжело в учении​</h2>
-      <div class="next">
-        Примеры использования WASM в сети (конец 2021 года):
-        <ul>
-          <li>A + B​</li>
-          <li>Factorial​​</li>
-          <li>Fibonacci​</li>
-        </ul>
-      </div>
-      <img class="next" id="owl" src="pictures/owl.jpg" alt="" />
-      <style>
-        #owl {
-          position: absolute;
-          bottom: 80px;
-          right: 200px;
-          width: 360px;
-        }
-      </style>
+      <h2>Выводы</h2>
+      <ul>
+        <li class="next">Пользователи должны знать о проблемах с сетью​</li>
+        <li class="next"><b>navigator.onLine</b> работает только в крайних случаях</li>
+        <li class="next">Network Information API не работает</li>
+        <li class="next">Используйте Resource Timing API</li>
+        <li class="next">Не забывайте о CORS</li>
+      </ul>
     </section>
+
+    <!----- --------->
 
     <section class="slide">
       <h2 class="title">Как же скомпилировать С++ в WASM?</h2>
