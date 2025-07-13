@@ -106,16 +106,6 @@
         padding: 0 0 0 var(--slide-side);
         margin-top: -24px;
       }
-
-      li.up {
-        padding-left: .5em;
-        list-style-type: "👍";
-      }
-
-      li.down {
-        padding-left: .5em;
-        list-style-type: "👎";
-      }
     </style>
   </head>
   <body class="shower list">
@@ -180,18 +170,18 @@
 
     <section class="slide">
       <h2>&nbsp;</h2>
-      <ul>
-        <li>Разработка продуктов для нефтегазовой индустрии​​</li>
-        <li>Geoscience-решения​</li>
-        <li>Много математических расчётов</li>
-        <li>Desktop, Web, iOS, Android, SDK, Public API</li>
+      <ul class="no-ticks">
+        <li>🛢️ Разработка продуктов для нефтегазовой индустрии​​</li>
+        <li>🌍 Geoscience-решения​</li>
+        <li>🧮 Много математических расчётов</li>
+        <li>💻📱 Desktop, Web, iOS, Android, SDK, Public API</li>
       </ul>
       <img id="rogii" src="pictures/rogii.svg" alt="" />
       <style>
         #rogii {
           position: absolute;
           top: 64px;
-          left: 64px;
+          left: 100px;
           width: 200px;
         }
       </style>
@@ -607,6 +597,48 @@ observer.observe({ type: 'resource' });
     </section>
 
     <section class="slide">
+      <h2>Типы записей PerformanceObserver</h2>
+      <table class="metrics">
+        <thead>
+          <tr>
+            <th>Тип (entryType)</th>
+            <th>Описание</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>resource</code></td>
+            <td>Загрузка ресурсов: <code>img</code>, <code>fetch</code>, <code>script</code>, и др.</td>
+          </tr>
+          <tr>
+            <td><code>navigation</code></td>
+            <td>Полные данные о загрузке страницы (TTFB, redirect, DOM и др.)</td>
+          </tr>
+          <tr>
+            <td><code>mark</code></td>
+            <td>Пользовательские метки времени (<code>performance.mark()</code>)</td>
+          </tr>
+          <tr>
+            <td><code>measure</code></td>
+            <td>Промежутки между метками (<code>performance.measure()</code>)</td>
+          </tr>
+          <tr>
+            <td><code>paint</code></td>
+            <td>Ранние метрики отрисовки: <code>first-paint</code>, <code>first-contentful-paint</code></td>
+          </tr>
+          <tr>
+            <td><code>first-input</code></td>
+            <td>Время отклика на первое взаимодействие (FID)</td>
+          </tr>
+          <tr>
+            <td><code>event</code></td>
+            <td>Задержки обработки событий (например, <code>click</code>, <code>input</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
       <h2>Вычисление скорости ресурса</h2>
       <pre id="speed-code" class="next">
         <code>
@@ -629,16 +661,103 @@ if (lastEntry.initiatorType === 'fetch') {
       </style>
     </section>
 
-     <!-- <section class="slide">
-      <h2>Performance Observer</h2>
+    <section class="slide">
+      <h2>Фильтрация записей</h2>
       <ul class="next">
-        <li>Загружаемые ресурсы (resource)</li>
-        <li>Метрики Core Web Vitals (layout-shift, first-input, largest-contentful-paint)</li>
-        <li>Пользовательские замеры (measure, mark)</li>
-        <li>Навигацию (navigation)</li>
-      ​</ul>
-    </section> -->
+        <li>Не учитываем записи с duration < 100ms​</li>
+        <li>Не учитываем записи объёмом меньше 1536 байт</li>
+      </ul>
+    </section>
 
+    <section class="slide">
+      <h2>Что же считать «маленькой» скоростью?</h2>
+      <img id="question" class="next" src="pictures/question.jpg" alt="" />
+      <div class="next">Зависит от:
+        <ul>
+          <li>типа вашего приложения</li>
+          <li>контента</li>
+          <li>сценариев использования</li>
+        </ul>
+      <div>
+      <style>
+        #question {
+          position: absolute;
+          right: 150px;
+          height: 50%;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Оценка скорости соединения</h2>
+      <table class="next">
+        <thead>
+          <tr>
+            <th>Скорость</th>
+            <th>Примерная оценка</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&lt; 50 КБ/сек</td>
+            <td>Очень медленно (пользователь заметит лаги)</td>
+          </tr>
+          <tr>
+            <td>50–150 КБ/сек</td>
+            <td>Замедленное поведение, страдает UX</td>
+          </tr>
+          <tr>
+            <td>150–500 КБ/сек</td>
+            <td>Приемлемо для большинства действий</td>
+          </tr>
+          <tr>
+            <td>&gt; 500 КБ/сек</td>
+            <td>Хорошее подключение</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <h2>Проблемы с CORS</h2>
+      <div class="next">
+        По умолчанию, если ресурс загружается с другого домена, то <code>PerformanceResourceTiming</code> не раскроет многие поля:
+          <pre>
+            <code>
+console.log(entry.transferSize); // будет 0
+console.log(entry.responseEnd); // тоже 0
+            </code>
+      </pre>
+        <div>
+    </section>
+
+    <section class="slide">
+      <h2>Проблемы с CORS</h2>
+      <div class="next">
+        Решение 1:  ✔️ Разрешить явно доступ к метрикам<br />(если у вас есть доступ)
+          <pre>
+            <code class="language-http">
+Timing-Allow-Origin: https://yourdomain.com
+или
+Timing-Allow-Origin: *
+            </code>
+          </pre>
+        <div>
+    </section>
+
+      <section class="slide">
+      <h2>Проблемы с CORS</h2>
+      <div>
+        Решение 2: 🛠️ Не учитываем запросы на другой домен
+          <pre>
+            <code>
+if (entry.name.startsWith(window.location.origin)) {
+  // считаем скорость
+}
+            </code>
+          </pre>
+        <div>
+    </section>
 
     <section class="slide">
       <h2>Варианты реагирования</h2>
@@ -650,88 +769,29 @@ if (lastEntry.initiatorType === 'fetch') {
       </ul>
     </section>
 
-
-
     <section class="slide">
-      <h2>Выводы</h2>
-      <ul>
-        <li class="next">Пользователи должны знать о проблемах с сетью​</li>
-        <li class="next"><b>navigator.onLine</b> работает только в крайних случаях</li>
-        <li class="next">Network Information API не работает</li>
-        <li class="next">Используйте Resource Timing API</li>
-        <li class="next">Не забывайте о CORS</li>
+      <h2>Debounce уведомлений</h2>
+      <ul class="no-ticks">
+        <li class="next">🌐 Сеть нестабильна: возможны скачки и падения</li>
+        <li class="next">📉 Замеры неточные: 1 медленный ресурс ≠ медленная сеть</li>
+        <li class="next">💡 UX: Пользователь должен получать уведомление только когда это действительно нужно</li>
       </ul>
     </section>
 
-    <!----- --------->
-
-    <section class="slide" id="cmake">
-      <h2>Разные сборки (через cmake)</h2>
-      <div class="columns two">
-        <div>
-          <p><b>Debug</b></p>
-          <ul>
-            <li class="down">Большой вес файла</li>
-            <li class="down">Работает медленнее</li>
-            <li class="up">Детальное описание ошибок</li>
-          </ul>
-          <img src="pictures/debug.png" alt="" />
-        </div>
-        <div>
-          <p><b>Release</b></p>
-          <ul>
-            <li class="up">Маленький вес файла</li>
-            <li class="up">Работает быстро</li>
-            <li class="down">Сложно отлаживать</li>
-          </ul>
-          <img src="pictures/release.png" alt="" />
-        </div>
-      </div>
-      <style>
-        #cmake p {
-          margin-bottom: 0;
-        }
-
-        #cmake ul {
-          font-size: 24px;
-        }
-
-        #cmake ul li::before {
-          content: '';
-        }
-      </style>
+    <section class="slide">
+      <h2>Эмуляция в браузере</h2>
+      <img id="throttle" width="80%" class="next" src="pictures/throttle-network-speed.png" alt="" />
     </section>
 
     <section class="slide">
-      <h2>Webpack</h2>
-      <div class="columns two">
-        <div>
-          <a href="https://github.com/DrSensor/webassembly-loader">
-            webassembly-loader
-          </a>
-          <br />
-          <a href="https://github.com/ballercat/wasm-loader">
-            wasm-loader
-          </a>
-        </div>
-        <div>
-          <img src="pictures/wasm-loader.png" height="60%" alt="" />
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <h2>CSP Error</h2>
-      <figure>
-        <blockquote>
-          <p>
-            Refused to compile or instantiate WebAssembly module because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src https:".
-          </p>
-        </blockquote>
-      </figure>
-      <pre class="next">
-        <code>Content-Security-Policy: script-src <mark>'wasm-unsafe-eval'</mark></code>
-      </pre>
+      <h2>Выводы</h2>
+      <ul class="no-ticks">
+        <li class="next">📢 Пользователи должны знать о проблемах с сетью​</li>
+        <li class="next">🧭 <b>navigator.onLine</b> работает только в крайних случаях</li>
+        <li class="next">🚫 Network Information API не работает</li>
+        <li class="next">📏 Используйте Resource Timing API</li>
+        <li class="next">⚠️ Не забывайте про CORS</li>
+      </ul>
     </section>
 
     <section class="slide clear" id="last-slide">
@@ -776,6 +836,17 @@ if (lastEntry.initiatorType === 'fetch') {
         }
       </style>
     </section>
+
+    <!-- Больше сказать про UX и пользовательский опыт - слайд 7
+    Больше плавных переходов (слайд 12)
+    Структуру получше и упомянуть все браузерные API
+    Хромиум-подобные браузеры
+    Мегабайты и мегабиты (проверить везде)
+    "маленькая" -> низкая
+    Добавить контент про конкурентные запросы и про веб-сокеты
+    Debounce не совсем логично (таймаут)
+    navigator.onLine работает только в крайних случаях - работает только когда точно нет сети
+    По реагированию добавить примеров и визуала -->
 
     <div class="progress"></div>
 
