@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!-- prettier-ignore -->
     <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <link rel="stylesheet" href="./lib/highlight/atom-one-light.min.css">
     <style>
       .montserrat {
         font-family: "Montserrat", sans-serif;
@@ -28,6 +29,10 @@
 
       .progress::before {
         background-color: #ed4344;
+      }
+
+      .no-ticks li::before {
+        content: "" !important;
       }
 
       .slide {
@@ -69,8 +74,47 @@
         transform: translateY(-50%);
       }
 
-      table tr td,th:last-of-type {
+      table tr td:last-of-type, table tr th:last-of-type {
         padding-left: 30px;
+      }
+
+      .metrics {
+        font-size: 16px;
+      }
+
+      .metrics th, .metrics td {
+        padding: 8px 0;
+      }
+
+      .metrics td:last-of-type, .metrics th:last-of-type {
+        padding-left: 0;
+      }
+
+      .metrics td:first-child, .metrics th:first-child {
+        padding-left: 48px;
+      }
+
+      .metrics th:last-child, .metrics td:last-child {
+        padding-right: 48px;
+      }
+
+      .slide pre {
+        margin-top: 25px;
+      }
+
+      .slide pre code.hljs {
+        padding: 0 0 0 var(--slide-side);
+        margin-top: -24px;
+      }
+
+      li.up {
+        padding-left: .5em;
+        list-style-type: "👍";
+      }
+
+      li.down {
+        padding-left: .5em;
+        list-style-type: "👎";
       }
     </style>
   </head>
@@ -110,27 +154,15 @@
           font-size: 34px;
           line-height: 150%;
         }
-
-        li.up {
-          padding-left: .5em;
-          list-style-type: "👍";
-        }
-
-        li.down {
-          padding-left: .5em;
-          list-style-type: "👎";
-        }
       </style>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="about-me">
       <h2>Обо мне</h2>
       <h3>Павел Дадыкин</h3>
-      <ul>
-        <li>Живу в Ульяновске</li>
-        <li>10 лет во фронтенде​</li>
-        <li>3 года тимлид на проекте StarLite Web</li>
-      </ul>
+      <div>📍 Живу в Ульяновске</div>
+      <div>💻 10 лет во фронтенде​</div>
+      <div>👨‍💼 3 года тимлид на проекте StarLite Web</div>
       <img id="me" src="pictures/me.jpg" alt="" />
       <style>
         #me {
@@ -139,16 +171,20 @@
           top: 50px;
           width: 300px;
         }
+
+        #about-me{
+          padding: 66px;
+        }
       </style>
     </section>
 
     <section class="slide">
       <h2>&nbsp;</h2>
       <ul>
-        <li class="next">Разработка продуктов для нефтегазовой индустрии​​</li>
-        <li class="next">Geoscience-решения​</li>
-        <li class="next">Много математических расчётов</li>
-        <li class="next">Desktop, Web, iOS, Android, SDK, Public API</li>
+        <li>Разработка продуктов для нефтегазовой индустрии​​</li>
+        <li>Geoscience-решения​</li>
+        <li>Много математических расчётов</li>
+        <li>Desktop, Web, iOS, Android, SDK, Public API</li>
       </ul>
       <img id="rogii" src="pictures/rogii.svg" alt="" />
       <style>
@@ -207,19 +243,19 @@
 
     <section class="slide">
       <h2>Зачем пользователям знать о проблемах с их соединением</h2>
-      <ol>
-        <li class="next">Пользователь не всегда понимает, что происходит​​</li>
-        <li class="next">Он может ждать live-данные, а они не придут</li>
-        <li class="next">Визуальное уведомление повышает доверие к продукту</li>
-      </ol>
+      <ul class="no-ticks">
+        <li class="next">🤷‍♂️ Пользователь не всегда понимает, что происходит​​</li>
+        <li class="next">⏳ Он может ждать live-данные, а они не придут</li>
+        <li class="next">👁️‍🗨️ Визуальное уведомление повышает доверие к продукту</li>
+      </ul>
     </section>
 
     <section class="slide">
       <h2>Типы проблем</h2>
-      <ul>
-        <li class="next"><strong>Полное отключение</strong> от интернета​​</li>
-        <li class="next">Временные <strong>скачки скорости​​</strong></li>
-        <li class="next">Постоянно <strong>низкая пропускная способность</strong></li>
+      <ul class="no-ticks">
+        <li class="next">🚫 <strong>Полное отключение</strong> от интернета​​</li>
+        <li class="next">📉 Временные <strong>скачки скорости​​</strong></li>
+        <li class="next">🐢 Постоянно <strong>низкая пропускная способность</strong></li>
       </ul>
     </section>
 
@@ -244,21 +280,24 @@
     <section class="slide">
       <h2>Online/Offline</h2>
       <div class="next">
-        window.navigator.onLine
+        <pre>
+          <code>window.navigator.onLine</code>
+        </pre>
         <img id="baseline-navigator" src="pictures/baseline-navigator.png" alt="" />
       </div>
-      <pre class="next">
-        <code>if&nbsp;(<mark>navigator.onLine</mark>)&nbsp;{</code>
-        <code>&nbsp;&nbsp;console.log("online");</code>
-        <code>} else {</code>
-        <code>&nbsp;&nbsp;console.log("offline");</code>
-        <code>}</code>
+      <pre>
+        <code class="next language-js">
+if (navigator.onLine) {
+  console.log("online");
+} else {
+  console.log("offline");
+}
+        </code>
       </pre>
       <style>
         #baseline-navigator {
           width: 382px;
           display: block;
-          margin-bottom: 20px;
         }
       </style>
     </section>
@@ -266,33 +305,41 @@
     <section class="slide">
       <h2>Online/Offline</h2>
       <pre>
-        <code>window.addEventListener('<mark>online</mark>', () => {/* сеть есть */});</code>
-        <code>window.addEventListener('<mark>offline</mark>', () => {/* сети нет */});</code>
+        <code>
+window.addEventListener('online', () => {/* сеть есть */});
+window.addEventListener('offline', () => {/* сети нет */});
+        </code>
       </pre>
     </section>
 
     <section class="slide">
       <h2>navigator.onLine</h2>
-      <li class="next">Показывает только есть ли <b>подключение к сети</b>​</li>
-      <li class="next"><b>Не делает</b> пинг, запрос или проверку доступности</li>
-      <li class="next">Нет информации о скорости или стабильности</li>
+      <ul>
+        <li class="next">Показывает только есть ли <b>подключение к сети</b>​</li>
+        <li class="next"><b>Не делает</b> пинг, запрос или проверку доступности</li>
+        <li class="next">Нет информации о скорости или стабильности</li>
+      </ul>
     </section>
 
     <section class="slide">
       <h2>navigator.onLine === true</h2>
-      <li>😀 С соединением всё в порядке</b>​</li>
-      <li class="next">🙁 DNS не работает​</li>
-      <li class="next">🙁 Wi-Fi есть, но интернет «упал»</li>
-      <li class="next">🙁 Wi-Fi требует авторизации</li>
-      <li class="next">🙁 Проблемы с VPN</li>
+      <ul class="no-ticks">
+        <li>😀 С соединением всё в порядке</b>​</li>
+        <li class="next">🙁 DNS не работает​</li>
+        <li class="next">🙁 Wi-Fi есть, но интернет «упал»</li>
+        <li class="next">🙁 Wi-Fi требует авторизации</li>
+        <li class="next">🙁 Проблемы с VPN</li>
+      </ul>
     </section>
 
     <section class="slide">
       <h2>Что же показывает navigator.onLine?</h2>
-      <li class="next">false → Проблемы с сетью точно есть 🙁</b>​</li>
-      <li class="next">true → <b>Возможно</b>, с сетью всё в порядке 🤨​</li>
+      <ul class="no-ticks">
+        <li class="next">false → Проблемы с сетью точно есть 🙁</b>​</li>
+        <li class="next">true → <b>Возможно</b>, с сетью всё в порядке 🤨​</li>
+      </ul>
       <div>&nbsp</div>
-      <div class="next"><b>Не стоит</b> полагаться на него как на единственный источник истины!</div>
+      <div class="next"><b>Не стоит</b> полагаться только на этот способ!</div>
     </section>
 
     <section class="slide">
@@ -305,9 +352,11 @@
           Network Information API
         </a>
       </h2>
-      Браузерное API для получения информации о типе подключения и скорости
+      <div>Браузерное API для получения информации о типе подключения и скорости</div>
       <div class="next">
-        <code>window.navigator.connection</code>
+        <pre>
+          <code>window.navigator.connection</code>
+        </pre>
       </div>
     </section>
 
@@ -380,17 +429,228 @@
       </style>
     </section>
 
+    <section class="slide">
+      <h2>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Resource_timing">
+          Resource Timing API
+        </a>
+      </h2>
+      <ul class="next">
+        <li>API для анализа времени загрузки ресурсов на странице</li>
+        <li><code>performance.getEntriesByType('resource')</code></li>
+        <li>Позволяет отслеживать <b>фактическую производительность</b> на клиенте</li>
+        <li>Работает с: <code>img</code>, <code>script</code>, <code>fetch</code>, <code>link</code>, <code>xhr</code> и др.</li>
+        <li>Очень гибкий инструмент</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <h2>Resource Timing API</h2>
+      <img id="time-diagram" src="pictures/timestamp-diagram.svg" alt="" />
+    </section>
+
+    <section class="slide">
+      <h2>Пример Performance Resource Timing</h2>
+      <img id="example" height="70%" src="pictures/example.png" alt="" />
+    </section>
+
+    <section class="slide">
+      <h2>Типичные метрики Resource Timing</h2>
+      <table class="metrics">
+        <thead>
+          <tr>
+            <th width="20%">Метрика</th>
+            <th width="36%">Формула</th>
+            <th>Назначение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TCP Handshake</td>
+            <td><code>connectEnd - connectStart</code></td>
+            <td>Время установления TCP-соединения</td>
+          </tr>
+          <tr>
+            <td>DNS Lookup</td>
+            <td><code>domainLookupEnd - domainLookupStart</code></td>
+            <td>Время разрешения DNS-имени</td>
+          </tr>
+          <tr>
+            <td>Redirect Time</td>
+            <td><code>redirectEnd - redirectStart</code></td>
+            <td>Задержка из-за переадресации</td>
+          </tr>
+          <tr>
+            <td>Request Time</td>
+            <td><code>responseStart - requestStart</code></td>
+            <td>Время между отправкой запроса и первым байтом ответа</td>
+          </tr>
+          <tr>
+            <td>TLS Negotiation</td>
+            <td><code>requestStart - secureConnectionStart</code></td>
+            <td>Время на установление HTTPS-соединения</td>
+          </tr>
+          <tr>
+            <td>Fetch Time</td>
+            <td><code>responseEnd - fetchStart</code></td>
+            <td>Общее время загрузки (без редиректов)</td>
+          </tr>
+        </tbody>
+      </table>
+      <style>
+        #metrics {
+          font-size: 16px;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Типичные метрики Resource Timing</h2>
+      <table class="metrics">
+        <thead>
+          <tr>
+            <th width="26%">Метрика</th>
+            <th width="33%">Формула</th>
+            <th>Назначение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Service Worker</td>
+            <td><code>fetchStart - workerStart</code></td>
+            <td>Задержка на обработку запроса в Service Worker</td>
+          </tr>
+          <tr>
+            <td>Контент сжат?</td>
+            <td><code>decodedBodySize ≠ encodedBodySize</code></td>
+            <td>Проверка наличия сжатия (например, gzip)</td>
+          </tr>
+          <tr>
+            <td>Использован кэш?</td>
+            <td><code>transferSize === 0</code></td>
+            <td>Загрузка из локального кэша</td>
+          </tr>
+          <tr>
+            <td>Современный протокол?</td>
+            <td><code>nextHopProtocol</code></td>
+            <td>Ожидается: <code>h2</code> или <code>h3</code> (HTTP/2/3)</td>
+          </tr>
+          <tr>
+            <td>Блокирует отрисовку?</td>
+            <td><code>renderBlockingStatus</code></td>
+            <td>Указывает, задерживает ли ресурс first paint</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide">
+      <h2>Timing в Developer Tools</h2>
+      <img id="devtools" height="70%" src="pictures/devtools.png" alt="" />
+    </section>
+
+    <section class="slide">
+      <h2>Сценарии использования <br/> Resource Timing API</h2>
+      <ul class="no-ticks">
+        <li>🔍 Анализ реальной производительности на клиенте​</li>
+        <li>🚦 Выявление узких мест в производительности​</li>
+        <li>🧰 Улучшение логики загрузки и отложенной инициализации​</li>
+        <li>🧬 Профилирование динамически загружаемых ресурсов​</li>
+      </ul>
+    </section>
+
+     <section class="slide">
+      <h2>📊 Сбор пользовательских метрик</h2>
+      <ul class="next">Можно записывать в аналитику:
+        <li>Время загрузки изображений, скриптов, иконок, шрифтов</li>
+        <li>Как влияет скорость соединения на время отображения UI</li>
+        <li>Географию/сети пользователей с медленными загрузками</li>
+      ​</ul>
+    </section>
+
+    <section class="slide">
+      <h2>Определяем медленное соединение</h2>
+      <ol class="next">
+        <li>Следим за <b>fetch</b> запросами</li>
+        <li>Смотрим <b>время</b> загрузки (duration)</li>
+        <li>Смотрим <b>объём</b> (transferSize)</li>
+        <li>Вычисляем <b>скорость</b> (transferSize / duration)</li>
+        <li>Если скорость <b>ниже</b> какого-то порога - сигнализируем</li>
+      ​</ol>
+    </section>
+
+    <section class="slide">
+      <h2>Получение информации о запросах</h2>
+      <div class="next">
+        Используем <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver">
+          Performance Observer
+        </a>
+      </div>
+
+      <pre id="perf-code" class="next">
+        <code class="language-js">
+const observer = new PerformanceObserver((list) => {
+  for (const entry of list.getEntries()) {
+    console.log(`${entry.name}, ${entry.startTime}`);
+  }
+});
+
+observer.observe({ type: 'resource' });
+        </code>
+      </pre>
+      <style>
+        #perf-code {
+          font-size: 22px;
+          margin-top: -20px;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Вычисление скорости ресурса</h2>
+      <pre id="speed-code" class="next">
+        <code>
+const entries = list.getEntries();
+const lastEntry = entries[entries.length - 1];
+
+if (lastEntry.initiatorType === 'fetch') {
+  const size = lastEntry.transferSize;
+  const duration = lastEntry.duration;
+  const speed = size / duration;
+  const isConnectionFast = speed > SLOW_CONNECTION_SPEED;
+}
+        </code>
+      </pre>
+      <style>
+        #speed-code {
+          font-size: 20px;
+          margin-top: -48px;
+        }
+      </style>
+    </section>
+
+     <!-- <section class="slide">
+      <h2>Performance Observer</h2>
+      <ul class="next">
+        <li>Загружаемые ресурсы (resource)</li>
+        <li>Метрики Core Web Vitals (layout-shift, first-input, largest-contentful-paint)</li>
+        <li>Пользовательские замеры (measure, mark)</li>
+        <li>Навигацию (navigation)</li>
+      ​</ul>
+    </section> -->
 
 
     <section class="slide">
       <h2>Варианты реагирования</h2>
-      <ul>
-        <li class="next">Показываем уведомление​</li>
-        <li class="next">Блокируем интерактивные действия, которые могут привести к ошибке</li>
-        <li class="next">Подгружаем облегчённую версию контента</li>
-        <li class="next">Начинаем повторную отправку запросов</li>
+      <ul class="no-ticks">
+        <li class="next">🔔 Показываем уведомление​</li>
+        <li class="next">🚫 Блокируем интерактивные действия, которые могут привести к ошибке</li>
+        <li class="next">🪶 Подгружаем облегчённую версию контента</li>
+        <li class="next">🔁 Начинаем повторную отправку запросов</li>
       </ul>
     </section>
+
+
 
     <section class="slide">
       <h2>Выводы</h2>
@@ -404,103 +664,6 @@
     </section>
 
     <!----- --------->
-
-    <section class="slide">
-      <h2 class="title">Как же скомпилировать С++ в WASM?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Компиляция в WASM</h2>
-      <ul>
-        <li>
-          <a href="https://emscripten.org/">
-            Emscripten
-          </a>
-        ​</li>
-        <li>
-          <a href="https://github.com/WebAssembly/binaryen">
-            Binaryen
-          </a>
-        ​</li>
-        <li>
-          <a href="https://habr.com/ru/articles/454868/">
-            Компиляция C в WebAssembly без Emscripten
-          </a>
-        ​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Emscripten​</h2>
-      <ul>
-        <li>Компиляция из C/C++/LLVM-language в WebAssembly​</li>
-        <li>Запуск этого кода в Web/Node.js</li>
-        <li>Поддержка библиотек C/C++</li>
-      </ul>
-      <img id="emscripten" src="pictures/emscripten-diagram.png" alt="" />
-      <style>
-        #emscripten {
-          position: absolute;
-          bottom: 100px;
-          width: 700px;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Документация Emscripten​</h2>
-      <img class="next" id="flags" src="pictures/flags.png" alt="" />
-      <style>
-        #flags {
-          position: absolute;
-          left: 96px;
-          width: 50%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Дефолтной конфигурации Emscripten<br />не существует!</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Флаги компиляции</h2>
-      <pre>
-          <code>-s DYNAMIC_EXECUTION=0 -s ENVIRONMENT=worker</code>
-          <code>-s MODULARIZE=1 -s ALLOW_MEMORY_GROWTH=1 --bind</code>
-      </pre>
-      <ul>
-        <li>Выключаем использование eval​</li>
-        <li><b>Задаем выполнение в веб-воркере</b>​​​</li>
-        <li>Оборачиваем в модульный код (без глобальных переменных)​</li>
-        <li>Разрешаем автоматический рост памяти​</li>
-        <li>Говорим привязать все функции к js</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Где же взять описание функций?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Генерация документации​</h2>
-      <a href="https://www.doxygen.nl/">
-        Doxygen
-      </a>
-      <img id="doxygen" src="pictures/doxygen.png" alt="" />
-      <style>
-        #doxygen {
-          position: absolute;
-          left: 96px;
-          top: 220px;
-          width: 60%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как сделать удобной отладку ошибок?</h2>
-    </section>
 
     <section class="slide" id="cmake">
       <h2>Разные сборки (через cmake)</h2>
@@ -540,67 +703,6 @@
     </section>
 
     <section class="slide">
-      <h2>Утечки памяти</h2>
-      <ul class="next">
-        <li>Добавили дополнительный флаг в сборку</li>
-        <li>Он передаёт флаг <code>-fsanitize=address –g2</code> компилятору​​</li>
-        <li>Вызов функции для принудительного сбора статистики​​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как реализовать версионирование?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Версионирование</h2>
-      <p>Emscripten на выходе даёт 2 файла:</p>
-      <ul>
-        <li>Бинарный .wasm</li>
-        <li>Обвязка в виде .js-файла​​</li>
-      </ul>
-      <img src="pictures/glue.png" alt="" />
-    </section>
-
-    <section class="slide">
-      <h2>Версионирование</h2>
-      <p>Добавить в начало JS-файла комментарий</p>
-      <pre>
-        <code>/*</code>
-        <code>  Version: 1.3.0</code>
-        <code>  Commit: 681def4aefb99c9de5357617dc138b66e6ae1d0b ​</code>
-        <code>  Pipeline: 103990 ​</code>
-        <code>*/</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Версионирование</h2>
-      <ul>
-        <li>Используем
-          <a href="https://www.sonatype.com/products/sonatype-nexus-oss-download">
-            Nexus
-          </a>
-        </li>
-        <li>Собираем в npm-пакет​​</li>
-        <li>Учитываем вариант сборки (Debug/Release)</li>
-      </ul>
-      <pre class="next">
-        <code>"dependencies": { ​</code>
-        <code>   "@nexus-npm/wasm": "<mark>0.9.0-Release</mark>", ​</code>
-        <code>}​</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Подключение WASM к проекту</h2>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как настроить Webpack?</h2>
-    </section>
-
-    <section class="slide">
       <h2>Webpack</h2>
       <div class="columns two">
         <div>
@@ -619,69 +721,6 @@
     </section>
 
     <section class="slide">
-      <h2>Webpack 4 file-loader​</h2>
-      <pre class="next">
-        <code>{</code>
-        <code>  test: <mark>/\.wasm$/</mark>,</code>
-        <code>  type: "javascript/auto",</code>
-        <code>  use: [{​​</code>
-        <code>  <mark>loader: "file-loader",​​</mark>​​</code>
-        <code>    options: {​ name: "wasm/[name].[hash].[ext]" }​​</code>
-        <code>  }]​​​​</code>
-        <code>}​</code>
-    </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Загрузка WASM в приложение​</h2>
-      <pre class="next">
-        <code>import <mark>wasm</mark> from 'math-js.wasm';</code>
-        <code> </code>
-        <code>const response = await client.get<ArrayBuffer>(<mark>wasm</mark>, {</code>
-        <code>    responseType: '<mark>arraybuffer</mark>' ​​</code>
-        <code>});</code>
-        <code> </code>
-        <code>const wasmBinary = response.data;​​</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Webpack 5</h2>
-      <p>
-        <a href="https://webpack.js.org/guides/asset-modules/">
-          Asset Modules
-        </a>
-        на замену file-loader
-        <br />
-        <a href="https://webpack.js.org/configuration/experiments/">
-          syncWebAssembly / asyncWebAssembly
-        </a>
-      </p>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как добавить типизацию?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Typescript</h2>
-      <ul>
-        <li>
-          <a href="https://www.npmjs.com/package/@types/emscripten">
-            @types/emscripten
-          </a>
-           &nbsp;для вспомогательных методов
-        ​</li>
-        <li>
-          Описание структур и функций вручную, используя Doxygen
-        ​</li>
-        <li class="next">
-          Автоматическая генерация <b>.ts</b> из <b>.hpp</b>
-        </li>
-      </ul>
-    </section>
-
-    <section class="slide">
       <h2>CSP Error</h2>
       <figure>
         <blockquote>
@@ -693,236 +732,6 @@
       <pre class="next">
         <code>Content-Security-Policy: script-src <mark>'wasm-unsafe-eval'</mark></code>
       </pre>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как конвертировать данные JS ↔ WASM?</h2>
-    </section>
-
-    <section class="slide">
-      <div class="columns two">
-        <div class="next">
-          <p><b>JS</b></p>
-          <ul>
-            <li>Массивы объектов</li>
-            <li>Автоматическое выделение памяти</li>
-            <li>Автоматическая сборка мусора</li>
-          </ul>
-        </div>
-        <div class="next">
-          <p><b>C/C++</b></p>
-          <ul>
-            <li>std::vector​ / TypedArray​ / Динамические массивы</li>
-            <li>Требуется выделение памяти</li>
-            <li>Нужно освобождать выделенную память</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide">
-      <h2>Конвертация JS ↔ WASM</h2>
-      <pre id="small-code" class="next">
-        <code>const pointer = instance.<mark>_malloc</mark>(size * Float64Array.BYTES_PER_ELEMENT); </code>
-        <code> </code>
-        <code>instance.<mark>HEAPF64.set</mark>(</code>
-        <code>  new Float64Array(size),</code>
-        <code>  ​pointer / Float64Array.BYTES_PER_ELEMENT,</code>
-        <code>); </code>
-        <code> </code>
-        <code>instance.<mark>_free</mark>(trajectory.mdArray.pointer); ​​</code>
-      </pre>
-      <style>
-        #small-code {
-          font-size: 20px;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Добавление обёртки</h2>
-      <ul>
-        <li>Добавили метаданные для функций конвертации и высвобождения памяти​</li>
-        <li>Emscripten сам конвертирует типы в C-структуры​</li>
-        <li>Передаём сразу массив объектов​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Удобные функции</h2>
-      <pre>
-        <code><mark>convertToJSObject</mark>&lt;WasmType, JSArrayType&gt;(data)​</code>
-        <code><mark>convertFromJSObject</mark>&lt;JSArrayType, WasmType&gt;(data)</code>
-        <code><mark>freeCollection</mark>(data)</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Undefined / NaN</h2>
-      <p>В <b>TypeScript</b> мы можем написать</p>
-      <pre>
-        <code>type X = <mark>number | undefined</mark>​</code>
-      </pre>
-      <p class="next">
-        В <b>C/C++</b> так нельзя!
-        <br />
-        Из функций расчёта в этом случае нам возвращается <b>NaN</b>
-      </p>
-    </section>
-
-    <section class="slide">
-      <h2>Undefined → NaN</h2>
-      <pre>
-        <code><span class="comment">// Преобразование для передачи в модуль расчёта</span></code>
-        <code> point.data ?? <mark>NaN</mark> </code>
-        <code> </code>
-        <code><span class="comment"> // Проверка на наличие значения</span>​</code>
-        <code> if (!<mark>isNaN</mark>(point.data))</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2>Batch запросов</h2>
-      <ul>
-        <li class="next">Большая часть времени тратится на преобразования из структур данных JS в WASM и обратно​</li>
-        <li class="next">Лучше выполнить одну большую операцию, чем много маленьких​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Batch запросов</h2>
-      <pre>
-        <code><mark>for</mark> (const element of elements) {</code>
-        <code>  const point = <mark>calculatePoint</mark>(element.x);</code>
-        <code>  points.push(point);</code>
-        <code>}​</code>
-      </pre>
-      <pre class="next">
-        <code>const xArray = elements.map((element) => element.x);</code>
-        <code>const points = <mark>wasm.calculatePoints</mark>(xArray);</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как всё подружить с веб-воркерами?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Web workers</h2>
-      <ul>
-        <li class="next">Механизм, который позволяет скрипту выполняться в фоновом потоке</li>
-        <li class="next">Основной поток без блокировки и замедления​​​</li>
-        <li class="next">Worker'ы могут запускать другие worker'ы​​​</li>
-        <li class="next">Они общаются друг с другом через postMessage​​​​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Web workers в StarLite​</h2>
-      <img id="ww-1" src="pictures/ww-1.png" alt="" />
-      <style>
-        #ww-1 {
-          position: absolute;
-          left: 96px;
-          top: 160px;
-          width: 70%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Web workers & WASM​</h2>
-      <img id="ww-2" src="pictures/ww-2.png" alt="" />
-      <style>
-        #ww-2 {
-          position: absolute;
-          left: 96px;
-          top: 160px;
-          width: 70%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Web workers & WASM​</h2>
-      <img id="ww-3" src="pictures/ww-3.png" alt="" />
-      <style>
-        #ww-3 {
-          position: absolute;
-          left: 96px;
-          top: 160px;
-          width: 70%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2>Web workers & WASM​</h2>
-      <img id="ww-4" src="pictures/ww-4.png" alt="" />
-      <style>
-        #ww-4 {
-          position: absolute;
-          left: calc(50% - 130px);
-          top: 160px;
-          height: 50%;
-        }
-      </style>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Как тестировать WASM?</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Тестирование</h2>
-      <ul>
-        <li class="next">Unit-тесты на стороне С++</li>
-        <li class="next">​Интеграционные тесты QAA​​​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Jest</h2>
-      <pre>
-        <code>import { <mark>readFileSync</mark> } from 'fs';</code>
-        <code> </code>
-        <code>const wasmBinary = <mark>readFileSync</mark>(</code>
-        <code>  'node_modules/path-to-wasm/<mark>math.wasm</mark>',​</code>
-        <code>);</code>
-        <code> </code>
-        <code>instance = await createModule({ wasmBinary });</code>
-      </pre>
-    </section>
-
-    <section class="slide">
-      <h2 class="title">Результаты</h2>
-    </section>
-
-    <section class="slide">
-      <h2>Плюсы</h2>
-      <ul>
-        <li class="next">Скорость расчётов выросла (в 2 – 10 раз)​</li>
-        <li class="next">Расчёты на разных платформах совпадают​​​</li>
-        <li class="next">Нет дублирования математических расчётов​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Минусы</h2>
-      <ul>
-        <li class="next">Сложность отладки​</li>
-        <li class="next">Зависимость от другой команды​​​</li>
-        <li class="next">Долгая итерация внедрения​​</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <h2>Когда стоит использовать WASM?</h2>
-      <ul>
-        <li class="next">Нужные функции уже написаны на другом языке​</li>
-        <li class="next">У вас большие объёмы данных, и вам нужен прирост в скорости​</li>
-        <li class="next">У вас есть ресурсы на внедрение​​</li>
-      </ul>
     </section>
 
     <section class="slide clear" id="last-slide">
@@ -971,5 +780,7 @@
     <div class="progress"></div>
 
     <script src="node_modules/@shower/core/dist/shower.js"></script>
+    <script src="./lib/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
   </body>
 </html>
