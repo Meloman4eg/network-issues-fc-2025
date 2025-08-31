@@ -31,7 +31,7 @@
         background-color: #ed4344;
       }
 
-      .no-ticks li::before {
+      .no-ticks > li::before {
         content: "" !important;
       }
 
@@ -64,14 +64,19 @@
         z-index: 1;
       }
 
+      h2.small {
+        font-size: 42px;
+      }
+
       h2.title {
         position: absolute;
         top: 50%;
         left: 0;
-        width: 100%;
+        width: 90%;
         text-align: center;
         line-height: 1;
         transform: translateY(-50%);
+        margin: 0 5%;
       }
 
       table tr td:last-of-type, table tr th:last-of-type {
@@ -174,7 +179,7 @@
         <li>🛢️ Разработка продуктов для нефтегазовой индустрии​​</li>
         <li>🌍 Geoscience-решения​</li>
         <li>🧮 Много математических расчётов</li>
-        <li>💻📱 Desktop, Web, iOS, Android, SDK, Public API</li>
+        <li>💻📱🛠️ Desktop, Web, iOS, Android, SDK, Public API</li>
       </ul>
       <img id="rogii" src="pictures/rogii.svg" alt="" />
       <style>
@@ -209,25 +214,33 @@
 
     <section class="slide">
       <h2>О чём доклад</h2>
-      <ul>
-        <li>Зачем пользователям знать о проблемах с соединением​</li>
-        <li>Как наш сервис должен реагировать​</li>
-        <li>Какие браузерные API работают, а какие нет
+      <ul class="no-ticks">
+        <li>❓ Зачем пользователям знать о проблемах с соединением​</li>
+        <li>⚙️ Как наш сервис должен реагировать​</li>
+        <li>🌐 Какие браузерные API работают, а какие нет
             <ul class="next">
-              <li>navigator.onLine</li>
-              <li>Network Information API</li>
-              <li>Resource Timing API</li>
+              <li>🧭 navigator.onLine</li>
+              <li>📡 Network Information API</li>
+              <li>📊 Resource Timing API</li>
             </ul>
         ​</li>
       </ul>
     </section>
 
     <section class="slide">
-      <img id="no-connection" src="pictures/slow-or-no-connection.gif" alt="" />
+      <h2 class="title">Зачем пользователям знать о проблемах с их соединением?</h2>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Главная цель — улучшить UX</h3>
+      <div>
+        <img id="ux" src="pictures/ux.png" alt="" />
+      </div>
       <style>
-        #no-connection {
-          height: 100%;
-          top: 0;
+        #ux {
+          position: absolute;
+          width: 600px;
+          top: 80px;
           bottom: 0;
           left: 0;
           right: 0;
@@ -238,12 +251,60 @@
     </section>
 
     <section class="slide">
-      <h2>Зачем пользователям знать о проблемах с их соединением</h2>
-      <ul class="no-ticks">
-        <li class="next">🤷‍♂️ Пользователь не всегда понимает, что происходит​​</li>
-        <li class="next">⏳ Он может ждать live-данные, а они не придут</li>
-        <li class="next">👁️‍🗨️ Визуальное уведомление повышает доверие к продукту</li>
-      </ul>
+      <h2 class="small">Пользователь не всегда понимает, что происходит</h2>
+      <div>
+        <img id="dont-know" src="pictures/dont-know.png" alt="" />
+      </div>
+      <style>
+        #dont-know {
+          position: absolute;
+          width: 600px;
+          top: 80px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Он может ждать live-данные, а они не придут</h2>
+      <div>
+        <img id="wait" src="pictures/wait.png" alt="" />
+      </div>
+      <style>
+        #wait {
+          position: absolute;
+          width: 600px;
+          top: 80px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Уведомление повышает доверие к продукту</h2>
+      <div>
+        <img id="trust" src="pictures/trust.png" alt="" />
+      </div>
+      <style>
+        #trust {
+          position: absolute;
+          width: 600px;
+          top: 80px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
     </section>
 
     <section class="slide">
@@ -274,7 +335,7 @@
     </section>
 
     <section class="slide">
-      <h2>Online/Offline</h2>
+      <h2>Определяем Online/Offline</h2>
       <div class="next">
         <pre>
           <code>window.navigator.onLine</code>
@@ -306,6 +367,21 @@ window.addEventListener('online', () => {/* сеть есть */});
 window.addEventListener('offline', () => {/* сети нет */});
         </code>
       </pre>
+      <div class="next">
+        <img id="thumb" src="pictures/thumb.jpg" alt="" />
+      </div>
+      <style>
+        #thumb {
+          position: absolute;
+          width: 250px;
+          top: 220px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
     </section>
 
     <section class="slide">
@@ -555,12 +631,12 @@ window.addEventListener('offline', () => {/* сети нет */});
       </ul>
     </section>
 
-     <section class="slide">
+    <section class="slide">
       <h2>📊 Сбор пользовательских метрик</h2>
-      <ul class="next">Можно записывать в аналитику:
-        <li>Время загрузки изображений, скриптов, иконок, шрифтов</li>
-        <li>Как влияет скорость соединения на время отображения UI</li>
-        <li>Географию/сети пользователей с медленными загрузками</li>
+      <ul class="next no-ticks">Можно записывать в аналитику:
+        <li>🖼️ Время загрузки изображений, скриптов, иконок, шрифтов</li>
+        <li>🐢 Как влияет скорость соединения на время отображения UI</li>
+        <li>🌍 Географию/сети пользователей с медленными загрузками</li>
       ​</ul>
     </section>
 
@@ -725,6 +801,38 @@ if (lastEntry.initiatorType === 'fetch') {
     </section>
 
     <section class="slide">
+      <h2>WebSockets</h2>
+      <ul>
+        <li><b>WebSocket не попадает в список ресурсов</b>, отслеживаемых через Resource Timing API</li>
+        <li>Это постоянное соединение, а Resource Timing предназначен для одноразовых загрузок ресурсов</li>
+      </ul>
+    </section>
+
+    <section class="slide" id="ws">
+      <h2>WebSockets</h2>
+      Метрики WebSockets можно отслеживать вручную:
+      <pre>
+        <code>
+const wsStart = performance.now();
+const socket = new WebSocket('wss://...');
+socket.addEventListener('open', () => {
+  const wsConnected = performance.now();
+  console.log(`Connected in ${wsConnected - wsStart}ms`);
+});
+        </code>
+      </pre>
+      <style>
+        #ws pre {
+          margin-top: 0;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="title">Что может пойти не так?</h2>
+    </section>
+
+    <section class="slide">
       <h2>Проблемы с CORS</h2>
       <div class="next">
         По умолчанию, если ресурс загружается с другого домена, то <code>PerformanceResourceTiming</code> не раскроет многие поля:
@@ -733,7 +841,7 @@ if (lastEntry.initiatorType === 'fetch') {
 console.log(entry.transferSize); // будет 0
 console.log(entry.responseEnd); // тоже 0
             </code>
-      </pre>
+          </pre>
         <div>
     </section>
 
@@ -766,22 +874,96 @@ if (entry.name.startsWith(window.location.origin)) {
     </section>
 
     <section class="slide">
-      <h2>Варианты реагирования</h2>
+      <h2 class="title">Как наш сервис должен реагировать?</h2>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Показываем уведомление</h3>
+      <div>
+        <img id="notification" src="pictures/notification.png" alt="" />
+      </div>
+      <style>
+        #notification {
+          position: absolute;
+          width: 600px;
+          top: 60px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Блокируем интерактивные действия, которые могут привести к ошибке</h3>
+      <div>
+        <img id="blocked" src="pictures/blocked.png" alt="" />
+      </div>
+      <style>
+        #blocked {
+          position: absolute;
+          width: 600px;
+          top: 120px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Подгружаем облегчённую версию контента</h3>
+      <div>
+        <img id="lite" src="pictures/lite.png" alt="" />
+      </div>
+      <style>
+        #lite {
+          position: absolute;
+          width: 600px;
+          top: 120px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Начинаем повторную отправку запросов</h3>
+      <div>
+        <img id="retry" src="pictures/retry.png" alt="" />
+      </div>
+      <style>
+        #retry {
+          position: absolute;
+          width: 600px;
+          top: 120px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2>Отображение уведомлений</h2>
       <ul class="no-ticks">
-        <li class="next">🔔 Показываем уведомление​</li>
-        <li class="next">🚫 Блокируем интерактивные действия, которые могут привести к ошибке</li>
-        <li class="next">🪶 Подгружаем облегчённую версию контента</li>
-        <li class="next">🔁 Начинаем повторную отправку запросов</li>
+        <li class="next">🌐 <b>Сеть нестабильна:</b> возможны скачки и падения</li>
+        <li class="next">📉 <b>Замеры неточные:</b> 1 медленный ресурс ≠ медленная сеть</li>
+        <li class="next">💡 <b>Уведомляем только по делу:</b> когда это влияет на UX</li>
       </ul>
     </section>
 
     <section class="slide">
-      <h2>Таймаут уведомлений</h2>
-      <ul class="no-ticks">
-        <li class="next">🌐 Сеть нестабильна: возможны скачки и падения</li>
-        <li class="next">📉 Замеры неточные: 1 медленный ресурс ≠ медленная сеть</li>
-        <li class="next">💡 UX: Пользователь должен получать уведомление только когда это действительно нужно</li>
-      </ul>
+      <h2 class="title">Как же это всё проверить?</h2>
     </section>
 
     <section class="slide">
@@ -842,11 +1024,6 @@ if (entry.name.startsWith(window.location.origin)) {
         }
       </style>
     </section>
-
-    <!-- Больше сказать про UX и пользовательский опыт - слайд 7
-    Хромиум-подобные браузеры
-    Добавить контент про конкурентные запросы и про веб-сокеты
-    По реагированию добавить примеров и визуала -->
 
     <div class="progress"></div>
 
