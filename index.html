@@ -213,6 +213,44 @@
     </section>
 
     <section class="slide">
+      <h2 class="small">Работа из офиса</h3>
+      <div>
+        <img id="business" src="pictures/business.png" alt="" />
+      </div>
+      <style>
+        #business {
+          position: absolute;
+          width: 600px;
+          top: 80px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
+      <h2 class="small">Работа в поле</h3>
+      <div>
+        <img id="field" src="pictures/field.png" alt="" />
+      </div>
+      <style>
+        #field {
+          position: absolute;
+          width: 600px;
+          top: 80px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+        }
+      </style>
+    </section>
+
+    <section class="slide">
       <h2>О чём доклад</h2>
       <ul class="no-ticks">
         <li>❓ Зачем пользователям знать о проблемах с соединением​</li>
@@ -479,17 +517,19 @@ window.addEventListener('offline', () => {/* сети нет */});
         <a href="https://googlechrome.github.io/samples/network-information/">
           Network Information API Sample
         </a>
+        <img id="qr-network-api" src="pictures/qr-network-api.png" alt="" />
       </div>
       <div class="next">
-        <img src="pictures/live-output.png" alt="" />
+        <img id="live-output" src="pictures/live-output.png" alt="" />
       </div>
       <div class="next">
         <img id="facepalm" src="pictures/facepalm.jpg" alt="" />
       </div>
       <style>
-        #baseline-network {
-          width: 381px;
+        #live-output {
+          width: 300px;
         }
+
         #facepalm {
           position: absolute;
           top: 50px;
@@ -497,6 +537,15 @@ window.addEventListener('offline', () => {/* сети нет */});
           right: 0;
           margin: auto;
           left: 0;
+        }
+
+        #qr-network-api {
+          position: absolute;
+          width: 200px;
+          top: 100px;
+          bottom: 0;
+          right: 150px;
+          margin: auto;
         }
       </style>
     </section>
