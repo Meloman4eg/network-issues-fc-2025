@@ -111,6 +111,12 @@
         padding: 0 0 0 var(--slide-side);
         margin-top: -24px;
       }
+
+      @media print {
+        .no-print {
+          visibility: hidden;
+        }
+      }
     </style>
   </head>
   <body class="shower list">
@@ -157,18 +163,19 @@
       <h3>Павел Дадыкин</h3>
       <div>📍 Живу в Ульяновске</div>
       <div>💻 10 лет во фронтенде​</div>
-      <div>👨‍💼 3 года тимлид на проекте StarLite Web</div>
+      <div>🔥 6 лет в компании ROGII</div>
+      <div>🧑‍💻 Выступал на FrontendConf 2024</div>
       <img id="me" src="pictures/me.jpg" alt="" />
       <style>
         #me {
           position: absolute;
-          right: 80px;
+          right: 100px;
           top: 50px;
           width: 300px;
         }
 
         #about-me{
-          padding: 66px;
+          padding: 40px 66px;
         }
       </style>
     </section>
@@ -213,7 +220,7 @@
     </section>
 
     <section class="slide">
-      <h2 class="small">Работа из офиса</h3>
+      <h2 class="small">Работа из офиса</h2>
       <div>
         <img id="business" src="pictures/business.png" alt="" />
       </div>
@@ -232,7 +239,7 @@
     </section>
 
     <section class="slide">
-      <h2 class="small">Работа в поле</h3>
+      <h2 class="small">Работа в поле</h2>
       <div>
         <img id="field" src="pictures/field.png" alt="" />
       </div>
@@ -270,7 +277,7 @@
     </section>
 
     <section class="slide">
-      <h2 class="small">Главная цель — улучшить UX</h3>
+      <h2 class="small">Главная цель — улучшить UX</h2>
       <div>
         <img id="ux" src="pictures/ux.png" alt="" />
       </div>
@@ -356,7 +363,7 @@
 
     <section class="slide">
       <h2 class="title">Браузер должен уметь всё это определять</h2>
-      <img class="next" id="obviously" src="pictures/obviously.jpg" alt="" />
+      <img class="next no-print" id="obviously" src="pictures/obviously.jpg" alt="" />
       <style>
         #obviously {
           width: 600px;
@@ -374,12 +381,12 @@
 
     <section class="slide">
       <h2>Определяем Online/Offline</h2>
-      <div class="next">
+      <div class="next" id="baseline-navigator-container">
         <pre>
           <code>window.navigator.onLine</code>
         </pre>
-        <img id="baseline-navigator" src="pictures/baseline-navigator.png" alt="" />
       </div>
+      <img class="next" id="baseline-navigator" src="pictures/baseline-navigator.png" alt="" />
       <pre>
         <code class="next language-js">
 if (navigator.onLine) {
@@ -390,9 +397,15 @@ if (navigator.onLine) {
         </code>
       </pre>
       <style>
+        #baseline-navigator-container {
+          margin-bottom: 50px;
+        }
+
         #baseline-navigator {
-          width: 382px;
-          display: block;
+          width: 800px;
+          position: absolute;
+          top: 180px;
+          left: 100px;
         }
       </style>
     </section>
@@ -510,10 +523,8 @@ window.addEventListener('offline', () => {/* сети нет */});
 
     <section class="slide">
       <h2>Network Information API</h2>
-      <div class="next">
-        <img id="baseline-network" src="pictures/baseline-network.png" alt="" />
-      </div>
-      <div class="next">
+      <img class="next" id="baseline-network" src="pictures/baseline-network.png" alt="" />
+      <div class="next" id="baseline-network-container">
         <a href="https://googlechrome.github.io/samples/network-information/">
           Network Information API Sample
         </a>
@@ -522,10 +533,21 @@ window.addEventListener('offline', () => {/* сети нет */});
       <div class="next">
         <img id="live-output" src="pictures/live-output.png" alt="" />
       </div>
-      <div class="next">
+      <div class="next no-print">
         <img id="facepalm" src="pictures/facepalm.jpg" alt="" />
       </div>
       <style>
+        #baseline-network {
+          width: 800px;
+          position: absolute;
+          top: 150px;
+          left: 100px;
+        }
+
+        #baseline-network-container {
+          padding-top: 80px;
+        }
+
         #live-output {
           width: 300px;
         }
@@ -544,7 +566,7 @@ window.addEventListener('offline', () => {/* сети нет */});
           width: 200px;
           top: 100px;
           bottom: 0;
-          right: 150px;
+          right: 115px;
           margin: auto;
         }
       </style>
@@ -556,13 +578,25 @@ window.addEventListener('offline', () => {/* сети нет */});
           Resource Timing API
         </a>
       </h2>
-      <ul class="next">
+      <img class="next" id="baseline-timing" src="pictures/baseline-timing.png" alt="" />
+      <ul class="next" id="baseline-timing-container">
         <li>API для анализа времени загрузки ресурсов на странице</li>
-        <li><code>performance.getEntriesByType('resource')</code></li>
         <li>Позволяет отслеживать <b>фактическую производительность</b> на клиенте</li>
         <li>Работает с: <code>img</code>, <code>script</code>, <code>fetch</code>, <code>link</code>, <code>xhr</code> и др.</li>
         <li>Очень гибкий инструмент</li>
       </ul>
+      <style>
+        #baseline-timing-container {
+          padding-top: 80px;
+        }
+
+        #baseline-timing {
+          width: 800px;
+          position: absolute;
+          top: 150px;
+          left: 100px;
+        }
+      </style>
     </section>
 
     <section class="slide">
@@ -670,7 +704,7 @@ window.addEventListener('offline', () => {/* сети нет */});
       <img id="devtools" height="70%" src="pictures/devtools.png" alt="" />
     </section>
 
-    <section class="slide">
+    <!-- <section class="slide">
       <h2>Сценарии использования <br/> Resource Timing API</h2>
       <ul class="no-ticks">
         <li>🔍 Анализ реальной производительности на клиенте​</li>
@@ -678,11 +712,11 @@ window.addEventListener('offline', () => {/* сети нет */});
         <li>🧰 Улучшение логики загрузки и отложенной инициализации​</li>
         <li>🧬 Профилирование динамически загружаемых ресурсов​</li>
       </ul>
-    </section>
+    </section> -->
 
     <section class="slide">
       <h2>📊 Сбор пользовательских метрик</h2>
-      <ul class="next no-ticks">Можно записывать в аналитику:
+      <ul class="next no-ticks">Благодаря <b>Resource Timing API</b> можно собирать:
         <li>🖼️ Время загрузки изображений, скриптов, иконок, шрифтов</li>
         <li>🐢 Как влияет скорость соединения на время отображения UI</li>
         <li>🌍 Географию/сети пользователей с медленными загрузками</li>
@@ -927,7 +961,7 @@ if (entry.name.startsWith(window.location.origin)) {
     </section>
 
     <section class="slide">
-      <h2 class="small">Показываем уведомление</h3>
+      <h2 class="small">Показываем уведомление</h2>
       <div>
         <img id="notification" src="pictures/notification.png" alt="" />
       </div>
@@ -955,7 +989,7 @@ if (entry.name.startsWith(window.location.origin)) {
     </section>
 
     <section class="slide">
-      <h2 class="small">Блокируем интерактивные действия, которые могут привести к ошибке</h3>
+      <h2 class="small">Блокируем интерактивные действия, которые могут привести к ошибке</h2>
       <div>
         <img id="blocked" src="pictures/blocked.png" alt="" />
       </div>
@@ -974,7 +1008,7 @@ if (entry.name.startsWith(window.location.origin)) {
     </section>
 
     <section class="slide">
-      <h2 class="small">Подгружаем облегчённую версию контента</h3>
+      <h2 class="small">Подгружаем облегчённую версию контента</h2>
       <div>
         <img id="lite" src="pictures/lite.png" alt="" />
       </div>
@@ -993,7 +1027,7 @@ if (entry.name.startsWith(window.location.origin)) {
     </section>
 
     <section class="slide">
-      <h2 class="small">Начинаем повторную отправку запросов</h3>
+      <h2 class="small">Начинаем повторную отправку запросов</h2>
       <div>
         <img id="retry" src="pictures/retry.png" alt="" />
       </div>
